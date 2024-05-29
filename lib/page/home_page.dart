@@ -17,18 +17,18 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     HttpDio().getWanBanner().then((value) => {
-      for (var item in value) {print(json.encode(item))}
-    });
+          for (var item in value) {print(json.encode(item))}
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
-          color: Colors.white,
-          child: const Column(
-            children: [SearchBarWidget(), ContentWidget(), BottomBarWidget()],
-          ),
-        ));
+      color: Colors.white,
+      child: const Column(
+        children: [SearchBarWidget(), ContentWidget(), BottomBarWidget()],
+      ),
+    ));
   }
 }

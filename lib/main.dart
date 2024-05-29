@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/provider/counter.dart';
 import 'package:flutter_demo/utils/http_dio.dart';
 import 'package:flutter_demo/page/home_page.dart';
 import 'package:flutter_demo/demo/router_page.dart';
 import 'package:flutter_demo/page/second_page.dart';
+import 'package:flutter_demo/page/three_page.dart';
 import 'package:flutter_demo/global/constants.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   HttpDio.init();
@@ -17,7 +20,8 @@ void main() {
   Chef.cookDish(); // 输出：厨师做了一道菜。到现在一共做了1道菜。
   Chef.cookDish(); // 输出：厨师做了一道菜。到现在一共做了2道菜。
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => Counter(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +36,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/second': (context) => const SecondPage(data: 'test',),
+        '/second': (context) => const SecondPage(
+              data: 'test',
+            ),
+        '/three': (context) => const ThreePage()
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/second') {
